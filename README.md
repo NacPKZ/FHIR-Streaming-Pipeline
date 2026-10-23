@@ -1,4 +1,48 @@
-# Projet Streaming de Données Médicales (FHIR + Kafka + Elastic)
+<div align="center">
+
+# FHIR Streaming Pipeline
+### Données médicales en temps réel · Kafka · Elasticsearch · Kibana
+
+**Une architecture de streaming qui simule des mesures de pression artérielle au format FHIR, détecte les valeurs hors seuil et permet leur suivi dans Kibana.**
+
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?logo=apachekafka&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?logo=elasticsearch&logoColor=white) ![Kibana](https://img.shields.io/badge/Kibana-005571?logo=kibana&logoColor=white)
+
+</div>
+
+---
+
+## Architecture du pipeline
+
+![Architecture du pipeline FHIR](screenshots/Architecture.png)
+
+`Générateur FHIR → Producer Python → Kafka → Consumer Python → Détection par seuils → Elasticsearch → Kibana`
+
+| Format des données | Traitement | Infrastructure | Visualisation |
+|:---:|:---:|:---:|:---:|
+| **FHIR Observation** | **Streaming Kafka** | **Docker Compose** | **Kibana** |
+
+> **Projet de simulation :** les données patients sont générées artificiellement. Les règles de détection sont des seuils simplifiés et ne constituent pas un dispositif médical ni un diagnostic.
+
+## Aperçu du système
+
+### Tableau de bord Kibana
+
+![Tableau de bord de surveillance Kibana](screenshots/Kibana_Dashboard.png)
+
+| Infrastructure Docker | Production et consommation Kafka |
+|---|---|
+| ![Conteneurs Docker](screenshots/Docker_running.png) | ![Producer et consumer](screenshots/Consumer_Producer.png) |
+| Détection des anomalies | Index Elasticsearch |
+| ![Détection d'anomalies](screenshots/Hits_anomalies.png) | ![Index Elasticsearch dans Kibana](screenshots/Kibana_index.png) |
+
+## Accès rapide
+
+[**Code du producteur**](producer/) · [**Code du consommateur**](consumer/) · [**Infrastructure Docker**](docker/) · [**Captures d'écran**](screenshots/) · [**Rapport PDF**](rapport_projet_fhir_kafka.pdf)
+
+---
+
+<details>
+<summary><strong>Afficher la documentation technique complète et les instructions d'exécution</strong></summary>
 
 ## Fonctionnement détaillé du système
 
@@ -391,3 +435,5 @@ python -m producer.producer
 Et ajoute les URLs :
 	•	Kibana : http://localhost:5601
 	•	Elasticsearch : http://localhost:9200
+
+</details>
